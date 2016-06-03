@@ -42,11 +42,11 @@
       <div class="col-lg-12 text-center">
 
         <div class="row">
-			    <div class="col-lg-6 col-md-6 col-sm-6">
+			    <div class="col-lg-12 col-md-12 col-sm-12">
 				    <div class="panel panel-default">
 				    	<div class="panel-heading">
 						    <div class="row">
-							    <div class="col-lg-8 col-md-8 col-sm-8"><b>Ustvarjanje EHR zapisa</b> za novega uporabnika.</div>
+							    <div class="col-lg-8 col-md-8 col-sm-8"><b>Ustvarjanje zapisa</b> za novega uporabnika.</div>
 							    <div class="col-lg-4 col-md-4 col-sm-4">
 							      <p>... ali izbira že obstoječega:</p>
 							      <select class="form-control input-sm" id="preberiPredlogoBolnika"><option value=""></option><option value="Pujsa,Pepa,1938-10-30T14:58">Pujsa Pepa</option></select></div>
@@ -56,47 +56,29 @@
 						     <p class="lead">Vaše ime:</p><input id="kreirajIme" type="text" class="form-control input-mini" placeholder="npr. Beti"><br>
 						     <p class="lead">Vaš priimek:</p><input id="kreirajPriimek" type="text" class="form-control" placeholder="npr. Novak"><br>
 						     <p class="lead">Vaš rojstni datum:</p><input id="kreirajDatumRojstva" type="text" class="form-control" placeholder="npr. 1977-05-21T04:20"><br>
+    						 <p class="lead">Vpišite datum in uro:</p><input id="dodajVitalnoDatumInUra" type="text" class="form-control input-mini" placeholder="2014-11-21T11:40Z"><br>
+    						 <p class="lead">Vpišite telesno višino:</p><div class="input-group"><input id="dodajVitalnoTelesnaVisina" type="text" class="form-control input-mini" placeholder="170"><span class="input-group-addon">cm</span></div><br>
+    						 <p class="lead">Vpišite telesno težo:</p><div class="input-group"><input id="dodajVitalnoTelesnaTeza" type="text" class="form-control input-mini" placeholder="56.00"><span class="input-group-addon">kg</span></div><br>
 						     <button type="button" class="btn btn-success btn-xs" onclick="kreirajEHRzaBolnika()">Dodaj podatke</button><span id="kreirajSporocilo"></span>
 				  	   </div>
 				    </div>
 			     </div>
-			     <div class="col-lg-6 col-md-6 col-sm-6">
-				     <div class="panel panel-default">
-					     <div class="panel-heading">
-						     <div class="row">
-							      <div class="col-lg-8 col-md-8 col-sm-8"><b>Branje EHR zapisa</b> obstoječega uporabnika.</div>
-						  	    <div class="col-lg-4 col-md-4 col-sm-4"><select class="form-control input-sm" id="preberiObstojeciEHR"><option value=""></option><option value="254f791d-2e7c-49d9-b646-376f62d6ead5">Dejan Lavbič</option><option value="d564c6a3-5a43-4fcc-bfa7-9ac76e9673bd">Pujsa Pepa</option><option value="b931580f-2b05-488b-985b-8d9ffb08ad02">Ata Smrk</option></select></div>
-						     </div>
-					     </div>
-					     <div class="panel-body">
-					        <p class="lead">Vpišite EHR ID:</p><input id="preberiEHRid" type="text" class="form-control input-mini" placeholder="7b661e12-3a98-21ad-c29e-2dc9f5a3d885"><br>
-					        <button type="button" class="btn btn-success btn-xs" onclick="preberiEHRodBolnika()">Preberi osnovne podatke</button><span id="preberiSporocilo"></span>
-				  	   </div>
-				    </div>
-		      </div>
-		    </div>
-        
-        <div class="row">
-          <div class="col-md-5 col-lg-5 col-sm-5">
+			   </div>
+			   
+			   <div class="row">
+          <div class="col-md-12 col-lg-12 col-sm-12">
             <div class="panel panel-default">
-              <div class="panel-heading">
-                <p><b>Vnos podatkov</b> za obstoječ EHR ID:</p>
-              </div>
-              <div class="panel-body">
-                <p class="lead">Vpišite svoj EHR ID:</p><input id="dodajVitalnoEHR" type="text" class="form-control input-mini" placeholder="7b661e12-3a98-21ad-c29e-2dc9f5a3d885"><br>
-    						<p class="lead">Vpišite datum in uro:</p><input id="dodajVitalnoDatumInUra" type="text" class="form-control input-mini" placeholder="2014-11-21T11:40Z"><br>
-    						<p class="lead">Vpišite telesno višino:</p><div class="input-group"><input id="dodajVitalnoTelesnaVisina" type="text" class="form-control input-mini" placeholder="170"><span class="input-group-addon">cm</span></div><br>
-    						<p class="lead">Vpišite telesno težo:</p><div class="input-group"><input id="dodajVitalnoTelesnaTeza" type="text" class="form-control input-mini" placeholder="56.00"><span class="input-group-addon">kg</span></div><br>
-    						<button type="button" class="btn btn-success btn-xs" onclick="dodajMeritveVitalnihZnakov()">Dodaj meritve</button><span id="dodajMeritveVitalnihZnakovSporocilo"></span>
-              </div>
+              <p>Izpis ID-ja novo kreiranega zapisa.</p>
             </div>
           </div>
-          
-          <div class="col-md-7 col-lg-7 col-sm-7">
+        </div>
+			   
+         <div class="row">
+		      <div class="col-md-4 col-lg-4 col-sm-4">
             <div class="panel panel-default">
               <div class="panel-heading">
                 <div class="col-md-9 col-lg-9 col-sm-9"><p><b>Branje rezultatov</b> za obstoječ EHR ID:</p></div>
-                <div class="col-md-3 col-lg-3 col-sm-3"><select class="form-control input-sm" id="preberiEhrIdZaVitalneZnake"><option value=""></option><option value="b931580f-2b05-488b-985b-8d9ffb08ad02">Ata Smrk</option><option value="d564c6a3-5a43-4fcc-bfa7-9ac76e9673bd">Pujsa Pepa</option></select></div><br>
+                <div class="col-md-3 col-lg-3 col-sm-3"><select class="form-control input-sm" id="preberiEhrIdZaVitalneZnake"><option value=""></option><option value="b931580f-2b05-488b-985b-8d9ffb08ad02">Ata Smrk</option><option value="d564c6a3-5a43-4fcc-bfa7-9ac76e9673bd">Pujsa Pepa</option></select></div><br><br>
               </div>
               <div class="panel-body">
                 <p class="lead">TO DO</p>
@@ -104,8 +86,17 @@
               </div>
             </div>
           </div>
-          
-        </div>
+          <div class="col-md-8 col-lg-8 col-sm-8">
+            <div class="panel panel-default">
+              <div class="panel-heading text-center">
+                <p><b>Rezultati kalkulacij</b></p>
+              </div>
+              <div class="panel-body">
+                <p class="lead">FUL GRAFOV IN FUL VIDEOV DA BO FUL DOBRU HEHE</p>
+              </div>
+            </div>
+          </div>
+         </div>
       </div>
     </div>
   </div>
