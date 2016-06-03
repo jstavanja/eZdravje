@@ -6,6 +6,10 @@
   <link href="knjiznice/css/bootstrap.min.css" rel="stylesheet">
   <style>
     body {padding-top: 70px;}
+    #kreiraniNoviZapis {
+      padding-top: 15px;
+      padding-bottom: 15px;
+    }
   </style>
   <script src="knjiznice/js/jquery-2.2.3.min.js"></script>
   <script src="knjiznice/js/bootstrap.min.js"></script>
@@ -29,7 +33,7 @@
         <ul class="nav navbar-nav">
           <li><a href="opis.html">Opis ideje</a></li>
           <li><a href="nacrt.html">Načrt informacijske rešitve</a></li>
-          <li><a href="#">Generiranje podatkov</a></li>
+          <li><a href="#" onclick="generirajTriUporabnike()">Generiranje podatkov</a></li>
         </ul>
       </div>
     </div>
@@ -38,25 +42,27 @@
 
   <!-- ZAČETEK: Vsebina aplikacije -->
   <div class="container">
+    
+		<div class="row">
+      <div class="col-md-12 col-lg-12 col-sm-12">
+        <div class="panel panel-default text-center" id="kreiraniNoviZapis">
+          <p class="text-muted">Tukaj se pojavijo zgenerirani EHRId-ji, ki nastanejo ob kliku na "Generiranje podatkov".</p>
+        </div>
+      </div>
+    </div>
+    
     <div class="row">
       <div class="col-lg-12 text-center">
 
         <div class="row">
 			    <div class="col-lg-12 col-md-12 col-sm-12">
 				    <div class="panel panel-default">
-				    	<div class="panel-heading">
-						    <div class="row">
-							    <div class="col-lg-8 col-md-8 col-sm-8"><b>Ustvarjanje zapisa</b> za novega uporabnika.</div>
-							    <div class="col-lg-4 col-md-4 col-sm-4">
-							      <p>... ali izbira že obstoječega:</p>
-							      <select class="form-control input-sm" id="preberiPredlogoBolnika"><option value=""></option><option value="Pujsa,Pepa,1938-10-30T14:58">Pujsa Pepa</option></select></div>
-						    </div>
+				      <div class="panel-heading">
+							  <p><b>Ustvarjanje zapisa</b> za novega uporabnika.</p>
 					     </div>
 					     <div class="panel-body">
 						     <p class="lead">Vaše ime:</p><input id="kreirajIme" type="text" class="form-control input-mini" placeholder="npr. Beti"><br>
 						     <p class="lead">Vaš priimek:</p><input id="kreirajPriimek" type="text" class="form-control" placeholder="npr. Novak"><br>
-						     <p class="lead">Vaš rojstni datum:</p><input id="kreirajDatumRojstva" type="text" class="form-control" placeholder="npr. 1977-05-21T04:20"><br>
-    						 <p class="lead">Vpišite datum in uro:</p><input id="dodajVitalnoDatumInUra" type="text" class="form-control input-mini" placeholder="2014-11-21T11:40Z"><br>
     						 <p class="lead">Vpišite telesno višino:</p><div class="input-group"><input id="dodajVitalnoTelesnaVisina" type="text" class="form-control input-mini" placeholder="170"><span class="input-group-addon">cm</span></div><br>
     						 <p class="lead">Vpišite telesno težo:</p><div class="input-group"><input id="dodajVitalnoTelesnaTeza" type="text" class="form-control input-mini" placeholder="56.00"><span class="input-group-addon">kg</span></div><br>
 						     <button type="button" class="btn btn-success btn-xs" onclick="kreirajEHRzaBolnika()">Dodaj podatke</button><span id="kreirajSporocilo"></span>
@@ -65,23 +71,18 @@
 			     </div>
 			   </div>
 			   
-			   <div class="row">
-          <div class="col-md-12 col-lg-12 col-sm-12">
-            <div class="panel panel-default">
-              <p>Izpis ID-ja novo kreiranega zapisa.</p>
-            </div>
-          </div>
-        </div>
-			   
          <div class="row">
 		      <div class="col-md-4 col-lg-4 col-sm-4">
             <div class="panel panel-default">
               <div class="panel-heading">
-                <div class="col-md-9 col-lg-9 col-sm-9"><p><b>Branje rezultatov</b> za obstoječ EHR ID:</p></div>
-                <div class="col-md-3 col-lg-3 col-sm-3"><select class="form-control input-sm" id="preberiEhrIdZaVitalneZnake"><option value=""></option><option value="b931580f-2b05-488b-985b-8d9ffb08ad02">Ata Smrk</option><option value="d564c6a3-5a43-4fcc-bfa7-9ac76e9673bd">Pujsa Pepa</option></select></div><br><br>
+                <p><b>Branje rezultatov</b> za obstoječ EHR ID:</p>
               </div>
               <div class="panel-body">
-                <p class="lead">TO DO</p>
+                <p class="lead">Lahko izberete tudi enega izmed zgeneriranih EHRID-jev.</p>
+                
+                <select class="form-control input-sm" id="preberiPredlogoBolnika"><option value=""></option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select>
+                
+                <input id="ehrIdZaIzracun" type="text" class="form-control" placeholder="npr. 460438f3-67ec-4a47-84d8-8f16370e4cbc"></input><br>
     						<button type="button" class="btn btn-success btn-xs" onclick="dodajMeritveVitalnihZnakov()">Poglej rezultate</button><span id="dodajMeritveVitalnihZnakovSporocilo"></span>
               </div>
             </div>
