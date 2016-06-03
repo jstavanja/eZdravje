@@ -22,7 +22,7 @@
           <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
         </button>
         <!-- ZAČETEK: Ime vaše aplikacije -->
-        <a class="navbar-brand" href="index.html">{ime vaše aplikacije}</a>
+        <a class="navbar-brand" href="index.html">FATORNOT</a>
         <!-- KONEC: Ime vaše aplikacije -->
       </div>
       <div class="collapse navbar-collapse" id="menujska-vrstica">
@@ -45,7 +45,10 @@
           </div>
           <div class="panel-body">
             <!-- ZAČETEK: Opis ideje, ki jo aplikacija podpira -->
-            <p><strong>TO-DO</strong>: Na tem mestu je potrebno dodati <strong>osnovni opis ideje rešitve</strong> (kakšen je osnovni SCENARIJ UPORABE, KDO je ciljna publika, za kakšen NAMEN se aplikacija uporablja).</p><p class="text-muted">Opis naj ne bo daljši od 200 besed.</p>
+            <p>Aplikacija podpira vnos podatkov o pacientu, ki se shranijo, na podlagi teh pa se izračuna njihov masni indeks. Masni indeks nato pove, ali je oseba morda pretežka, prelahka ali pa ravno prav rejena. Aplikacija na podlagi tega tudi prikaže videe, ki so morda primerni za dotičnega uporabnika.</p>
+            <h4>Primer uporabe</h4>
+            <p>Gospo <i>Alfa Beti</i> zanima, če je s svojimi 56kg in 170cm pretežka, aplikacija pa ji vrne samozavest in ji pove, da je v mejah normale, oz. ima še kar športno postavo. FATORNOT še predlaga različne videe na temo športa.</p>
+            <p class="text-muted">Podobnost z resničnimi imeni/osebami je zgolj naključna.</p>
             <!-- KONEC: Opis ideje, ki jo aplikacija podpira -->
           </div>
         </div>
@@ -55,7 +58,7 @@
           </div>
           <div class="panel-body">
             <!-- ZAČETEK: Uporabljeni zunanji viri podatkov -->
-            <p><strong>TO-DO</strong>: Na tem mestu je navesti zunanji vir podatkov (URL naslov), na kakšen način ste ga uporabili (neposredni API klic, uvožena statična datoteka ipd.) in kaj je bil namen uporabe (kako se vključuje v osnovno idejo aplikacije).</p>
+            <p>V aplikaciji je kot zunanji vir uporabljen YouTube (<a href="https://www.youtube.com">https://www.youtube.com</a>). Prikaz videev glede na posredovane parametre omogoča Googlov YouTube API. FATORNOT uporabi informacijo o teži osebe in ji glede na to preko direktnega API klica preko JavaScript funkcije prikaže videe na temo športa/"weight-loss"-a/smešnih mačk(če je z osebo vse v redu a.k.a. nagrada za vzdrževanje dobre postave).</p>
             <!-- KONEC: Uporabljeni zunanji viri podatkov -->
           </div>
         </div>
@@ -65,7 +68,7 @@
           </div>
           <div class="panel-body">
             <!-- ZAČETEK: Master/detail načrtovalski vzorec -->
-            <p><strong>TO-DO</strong>: Na tem mestu morate navesti uporabljen master/detail načrtovalski vzorec in na kakšen način ga nameravate uporabiti.</p>
+            <p>Moja ideja master/detail vzorca je, da sprva uporabnik dobi nazaj zgolj podatek o svojem masnem indeksu in podatek o tem, ali je pretežak/ni pretežak. Če pa želi še bolj podrobne podatke, lahko klikne na "več" in posredujejo se mu še videi s pomočjo za hujšanje ipd.</p>
             <!-- KONEC: Master/detail načrtovalski vzorec -->
           </div>
         </div>
@@ -75,7 +78,7 @@
           </div>
           <div class="panel-body">
             <!-- ZAČETEK: Uporabljeni zunanji viri podatkov -->
-            <p><strong>TO-DO</strong>: Na tem mestu je potrebno navesti uporabljeno tehniko vizualizacije podatkov (za pomoč lahko uporabite primer iz <a href="https://github.com/mbostock/d3/wiki/Gallery" target="_blank">D3.js galerije</a>) in zakaj je bila ta tehnika izbrana.</p>
+            <p>Za vizualizacijo sem uporabil kar knjižnjico D3.js, ki lepo grafično prikaže masni indeks, saj masni indeks marsikomu kot številka ne pomeni prav dosti. Če pa se naprimer obarva rdeče/zeleno, pa to marsikomu pove, ali je številka dobra ali slaba. Za ostale podatke pa je vizualizacija predvsem estetskega pomena.</p>
             <!-- KONEC: Uporabljeni zunanji viri podatkov -->
           </div>
         </div>
