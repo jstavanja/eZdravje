@@ -79,7 +79,9 @@
 		      <div class="col-md-4 col-lg-4 col-sm-4">
             <div class="panel panel-default">
               <div class="panel-heading">
-                <p><b>Branje rezultatov</b> za obstoječ EHR ID:</p>
+                <p><b>Branje rezultatov</b> za obstoječ EHR ID: 
+                <img src="knjiznice/img/warning-icon.png" width="5%" height="5%" data-toggle="tooltip" title="Če hočete ročno vpisati EHRID, poskrbite da je v dropdown meniju izbrana prazna možnost."></img> 
+                </p>
               </div>
               <div class="panel-body">
                 <p class="lead">Lahko izberete tudi enega izmed zgeneriranih EHRID-jev.</p>
@@ -114,6 +116,13 @@
       </div>
     </div>
   </div>
+  
+  <script>
+  $(document).ready(function(){
+      $('[data-toggle="tooltip"]').tooltip();   
+  });
+  </script>
+  
   <!-- KONEC: Vsebina aplikacije -->
 
 </body>

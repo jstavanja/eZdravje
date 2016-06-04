@@ -28,6 +28,8 @@ function generirajTriUporabnike() {
     for(var i = 1; i <= 3; i++) {
         generirajPodatke(i);
     }
+    
+    $("#kreiraniNoviZapis").append('<p class="text-muted">Poizvedbo s temi zgeneriranimi uporabniki lahko izvedete z izbiro številke 1, 2 ali 3 v dropdown meniju spodaj. <br>Z vsakim klikom na "Generiranje podatkov" se tudi v dropdown meniju EHRID-ji posodobijo.</p>')
 }
 
 /**
@@ -275,9 +277,7 @@ function zacniPoizvedboZaRezultate() {
 				
 				var bmiOsebe = izracunajBMI(visina, teza);
     
-                $('#prikazRezultatov').html("Podatki o osebi: " + ime + " " + priimek + " " + visina + "cm " + teza + "kg. BMI:" + bmiOsebe);
-                
-                ime = "", visina = "", teza = "", priimek = "";
+                graficniIzpis(ime, priimek, visina, teza, bmiOsebe);
 				
 				
 			},
@@ -334,9 +334,9 @@ function zacniPoizvedboZaRezultate() {
 
 function graficniIzpis(ime, priimek, visina, teza, bmi) {
         
-    $('#prikazRezultatov').html("Osnovni podatki o osebi s tem EHRID: " + ime + " " + priimek + " " + visina + "cm " + teza + "kg." + "<br>");
-    $('#prikazRezultatov').append("<h4>BMI:</h4>");
-    $('#prikazRezultatov').append('                <svg id="fillgauge1" width="97%" height="250"></svg>\
+    $('#izracunPrikaz').html("Osnovni podatki o osebi s tem EHRID: " + ime + " " + priimek + " " + visina + "cm " + teza + "kg." + "<br>");
+    $('#izracunPrikaz').append("<h4>BMI:</h4>");
+    $('#izracunPrikaz').append('                <svg id="fillgauge1" width="97%" height="250"></svg>\
                 <script language="JavaScript">\
                     var gauge1 = loadLiquidFillGauge("fillgauge1", ' + bmi + ');\
                     var config1 = liquidFillGaugeDefaultSettings();\
@@ -347,8 +347,8 @@ function graficniIzpis(ime, priimek, visina, teza, bmi) {
                     config1.circleThickness = 0.2;\
                     config1.textVertPosition = 0.2;\
                     config1.waveAnimateTime = 1000;\
-                </script>')
-    $('#prikazRezultatov').append(osmisliBMI(bmi));
+                </script><br>')
+    $('#izracunPrikaz').append(osmisliBMI(bmi));
 }
 
 function osmisliBMI(bmi) {
