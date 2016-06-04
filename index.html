@@ -10,10 +10,14 @@
       padding-top: 15px;
       padding-bottom: 15px;
     }
+    .liquidFillGaugeText { font-family: Helvetica; font-weight: bold; }
   </style>
   <script src="knjiznice/js/jquery-2.2.3.min.js"></script>
   <script src="knjiznice/js/bootstrap.min.js"></script>
   <script src="knjiznice/js/koda.js"></script>
+  <script src="http://d3js.org/d3.v3.min.js" language="JavaScript"></script>
+  <script src="knjiznice/js/liquidFillGauge.js" language="JavaScript"></script>
+  
 </head>
 <body>
 
@@ -93,7 +97,16 @@
                 <p><b>Rezultati kalkulacij</b></p>
               </div>
               <div class="panel-body" id="prikazRezultatov">
-                <p class="lead">FUL GRAFOV IN FUL VIDEOV DA BO FUL DOBRU HEHE</p>
+                
+                <div id="izracunPrikaz">
+                  <!-- naslov tukaj -->
+                  <!-- graf tukaj -->
+                </div>
+                
+                <div id="apiKlicRezultat">
+                  <!-- videi tukaj -->
+                </div>
+
               </div>
             </div>
           </div>

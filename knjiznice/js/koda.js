@@ -67,7 +67,7 @@ function generirajPodatke(stPacienta) {
 		            partyAdditionalInfo: [{key: "ehrId", value: ehrId}, {key: "visina", value: visina}, {key: "teza", value: teza}]
 		        };
 		        
-		        console.log(partyData);
+		        // console.log(partyData);
 		        
 		        $.ajax({
 		            
@@ -108,7 +108,7 @@ function generirajPodatke(stPacienta) {
                         alert("dropdown element setting error");
                         break;
                 }
-                console.log(ehrId);
+                // console.log(ehrId);
                 dropdownElement.attr("value", ehrId);
                 
 		    }
@@ -163,7 +163,7 @@ function vrniTezo(stPacienta) {
         case 2:
             return 105;
         case 3:
-            return 78;
+            return 38;
         default:
             return "Napaka v stPacienta";
     }
@@ -258,13 +258,26 @@ function zacniPoizvedboZaRezultate() {
 				// console.log(JSON.stringify(party));
 				ime = party.firstNames;
 				priimek = party.lastNames;
-				visina = party.partyAdditionalInfo[1].value;
-				teza = party.partyAdditionalInfo[2].value;
+
+				for (var i = 0; i < 3; i++) {
+				    if (party.partyAdditionalInfo[i].key == "teza") {
+				        console.log("teza is set");
+				        teza = party.partyAdditionalInfo[i].value;
+				    }
+				}
 				
+				for (var i = 0; i < 3; i++) {
+				    if (party.partyAdditionalInfo[i].key == "visina") {
+				        console.log("visina is set");
+				        visina = party.partyAdditionalInfo[i].value;
+				    }
+				}
 				
 				var bmiOsebe = izracunajBMI(visina, teza);
     
                 $('#prikazRezultatov').html("Podatki o osebi: " + ime + " " + priimek + " " + visina + "cm " + teza + "kg. BMI:" + bmiOsebe);
+                
+                ime = "", visina = "", teza = "", priimek = "";
 				
 				
 			},
@@ -274,6 +287,7 @@ function zacniPoizvedboZaRezultate() {
                 JSON.parse(err.responseText).userMessage + "'!");
 			}
 		});
+		
     } else {
         
         ehrId = $('#ehrDropdown option:selected').attr("value");
@@ -282,19 +296,30 @@ function zacniPoizvedboZaRezultate() {
 			url: baseUrl + "/demographics/ehr/" + ehrId + "/party",
 			type: 'GET',
 			headers: {"Ehr-Session": sessionId},
+			
 	    	success: function (data) {
 				var party = data.party;
-				// console.log(JSON.stringify(party));
+				// console.log(party);
 				ime = party.firstNames;
 				priimek = party.lastNames;
-				visina = party.partyAdditionalInfo[1].value;
-				if(visina.length > 3) alert("goteem");
-				teza = party.partyAdditionalInfo[2].value;
 				
+				for (var i = 0; i < 3; i++) {
+				    if (party.partyAdditionalInfo[i].key == "teza") {
+				        // console.log("teza is set");
+				        teza = party.partyAdditionalInfo[i].value;
+				    }
+				}
+				
+				for (var i = 0; i < 3; i++) {
+				    if (party.partyAdditionalInfo[i].key == "visina") {
+				        // console.log("visina is set");
+				        visina = party.partyAdditionalInfo[i].value;
+				    }
+				}
 				
 				var bmiOsebe = izracunajBMI(visina, teza);
-    
-                $('#prikazRezultatov').html("Podatki o osebi: " + ime + " " + priimek + " " + visina + "cm " + teza + "kg. BMI:" + bmiOsebe);
+				
+				graficniIzpis(ime, priimek, visina, teza, bmiOsebe);
 				
 			},
 			error: function(err) {
@@ -307,8 +332,42 @@ function zacniPoizvedboZaRezultate() {
     
 }
 
+function graficniIzpis(ime, priimek, visina, teza, bmi) {
+        
+    $('#prikazRezultatov').html("Osnovni podatki o osebi s tem EHRID: " + ime + " " + priimek + " " + visina + "cm " + teza + "kg." + "<br>");
+    $('#prikazRezultatov').append("<h4>BMI:</h4>");
+    $('#prikazRezultatov').append('                <svg id="fillgauge1" width="97%" height="250"></svg>\
+                <script language="JavaScript">\
+                    var gauge1 = loadLiquidFillGauge("fillgauge1", ' + bmi + ');\
+                    var config1 = liquidFillGaugeDefaultSettings();\
+                    config1.circleColor = "#FF7777";\
+                    config1.textColor = "#FF4444";\
+                    config1.waveTextColor = "#FFAAAA";\
+                    config1.waveColor = "#FFDDDD";\
+                    config1.circleThickness = 0.2;\
+                    config1.textVertPosition = 0.2;\
+                    config1.waveAnimateTime = 1000;\
+                </script>')
+    $('#prikazRezultatov').append(osmisliBMI(bmi));
+}
+
+function osmisliBMI(bmi) {
+    if (bmi < 18.5) {
+        return "Za svoje dimenzije ste prešibki.";
+    }
+    if (bmi > 18.5 && bmi <= 24.9) {
+        return "Glede na BMI imate pravilno razmerje med težo in višino.";
+    }
+    if (bmi > 24.9 && bmi <= 29.9) {
+        return "Rezultati izračuna BMI kažejo, da ste malce pretežki.";
+    }
+    else {
+        return "Vaš BMI pravi, da ste hudo debeli.";
+    }
+}
+
 function izracunajBMI(visina, teza) {
     var bmi = (teza) / ((visina/100) * (visina/100));
-    console.log("Izracunan BMI je: " + bmi);
+    // console.log("Izracunan BMI je: " + bmi);
     return bmi;
 }
