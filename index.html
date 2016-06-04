@@ -80,10 +80,10 @@
               <div class="panel-body">
                 <p class="lead">Lahko izberete tudi enega izmed zgeneriranih EHRID-jev.</p>
                 
-                <select class="form-control input-sm" id="preberiPredlogoBolnika"><option value=""></option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select>
+                <select class="form-control input-sm" id="ehrDropdown"><option value="----"></option><option value="1" id="prviIdDropdown">1</option><option value="2" id="drugiIdDropdown">2</option><option value="3" id="tretjiIdDropdown">3</option></select>
                 
                 <input id="ehrIdZaIzracun" type="text" class="form-control" placeholder="npr. 460438f3-67ec-4a47-84d8-8f16370e4cbc"></input><br>
-    						<button type="button" class="btn btn-success btn-xs" onclick="dodajMeritveVitalnihZnakov()">Poglej rezultate</button><span id="dodajMeritveVitalnihZnakovSporocilo"></span>
+    						<button type="button" class="btn btn-success btn-xs" onclick="zacniPoizvedboZaRezultate()">Poglej rezultate</button><span id="dodajMeritveVitalnihZnakovSporocilo"></span>
               </div>
             </div>
           </div>
@@ -92,7 +92,7 @@
               <div class="panel-heading text-center">
                 <p><b>Rezultati kalkulacij</b></p>
               </div>
-              <div class="panel-body">
+              <div class="panel-body" id="prikazRezultatov">
                 <p class="lead">FUL GRAFOV IN FUL VIDEOV DA BO FUL DOBRU HEHE</p>
               </div>
             </div>
