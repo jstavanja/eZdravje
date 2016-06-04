@@ -21,7 +21,11 @@ function getSessionId() {
     return response.responseJSON.sessionId;
 }
 
+var stGeneriranj = 0;
+
 function generirajTriUporabnike() {
+
+    $("#kreiraniNoviZapis").animate({ scrollTop: 0 }, "fast");
     
     $("#kreiraniNoviZapis").html('<p class="lead">Generirani so bili trije novi zapisi:</p>');
     
@@ -30,6 +34,7 @@ function generirajTriUporabnike() {
     }
     
     $("#kreiraniNoviZapis").append('<p class="text-muted">Poizvedbo s temi zgeneriranimi uporabniki lahko izvedete z izbiro številke 1, 2 ali 3 v dropdown meniju spodaj. <br>Z vsakim klikom na "Generiranje podatkov" se tudi v dropdown meniju EHRID-ji posodobijo.</p>')
+
 }
 
 /**
@@ -184,8 +189,6 @@ function vrniVisino(stPacienta) {
     }
 }
 
-// TODO: Tukaj implementirate funkcionalnost, ki jo podpira vaša aplikacija
-
 function kreirajEHRzaBolnika() {
     
     var ime = $('#kreirajIme').val();
@@ -223,16 +226,17 @@ function kreirajEHRzaBolnika() {
 		            data: JSON.stringify(partyData),
 		            success: function (party) {
 		                if (party.action == 'CREATE') {
-		                    $("#kreiraniNoviZapis").html("<span class='obvestilo " +
+		                    $("#kreiraniNoviZapis").html("<h2><span class='obvestilo " +
                             "label label-success fade-in'>Uspešno generiran EHR '" +
-                            ehrId + "'.</span><br>");
-                            
+                            ehrId + "'.</span></h2><br>");
+                            $("#kreiraniNoviZapis").animate({ scrollTop: 0 }, "fast");
 		                }
 		            },
 		            error: function(err) {
 		            	$("#kreiraniNoviZapis").append("<span class='obvestilo label " +
                         "label-danger fade-in'>Napaka '" +
-                    JSON.parse(err.responseText).userMessage + "'!");
+                        JSON.parse(err.responseText).userMessage + "'!");
+                        $("#kreiraniNoviZapis").animate({ scrollTop: 0 }, "fast");
 		            }
 		        });
 		    }
@@ -282,7 +286,7 @@ function zacniPoizvedboZaRezultate() {
 				
 			},
 			error: function(err) {
-				$("#kreiraniNoviZapis").html("<span class='obvestilo label " +
+				$("#prikazRezultatov").html("<span class='obvestilo label " +
                 "label-danger fade-in'>Napaka '" +
                 JSON.parse(err.responseText).userMessage + "'!");
 			}
@@ -323,7 +327,7 @@ function zacniPoizvedboZaRezultate() {
 				
 			},
 			error: function(err) {
-				$("#kreiraniNoviZapis").html("<span class='obvestilo label " +
+				$("#prikazRezultatov").html("<span class='obvestilo label " +
                 "label-danger fade-in'>Napaka '" +
                 JSON.parse(err.responseText).userMessage + "'!");
 			}
@@ -333,7 +337,10 @@ function zacniPoizvedboZaRezultate() {
 }
 
 function graficniIzpis(ime, priimek, visina, teza, bmi) {
-        
+    
+    $('#videi').html("");
+    $('#youtubeRow').css("visibility", "hidden");
+    
     $('#izracunPrikaz').html("Osnovni podatki o osebi s tem EHRID: " + ime + " " + priimek + " " + visina + "cm " + teza + "kg." + "<br>");
     $('#izracunPrikaz').append("<h4>BMI:</h4>");
     $('#izracunPrikaz').append('                <svg id="fillgauge1" width="97%" height="250"></svg>\
@@ -347,8 +354,9 @@ function graficniIzpis(ime, priimek, visina, teza, bmi) {
                     config1.circleThickness = 0.2;\
                     config1.textVertPosition = 0.2;\
                     config1.waveAnimateTime = 1000;\
-                </script><br>')
+                </script><br>');
     $('#izracunPrikaz').append(osmisliBMI(bmi));
+    $('#izracunPrikaz').append("<br><button type='button' class='btn btn-primary' onclick='prikaziVidee("+ bmi +")'>Kliknite tukaj za pomoč in nadaljevanje!</button>");
 }
 
 function osmisliBMI(bmi) {
@@ -370,4 +378,46 @@ function izracunajBMI(visina, teza) {
     var bmi = (teza) / ((visina/100) * (visina/100));
     // console.log("Izracunan BMI je: " + bmi);
     return bmi;
+}
+
+var stVideev = 5;
+
+function prikaziVidee(bmi) {
+    
+    $('#youtubeRow').css("visibility", "visible");
+    
+    var keyword = keywordGledeNaBMI(bmi);
+    
+    $.get(
+            "https://www.googleapis.com/youtube/v3/search",{
+            part: 'snippet',
+            maxResults: stVideev,
+            key: 'AIzaSyDbdPf-t1yYsRyWlwg09wdWcoAWHMLHchs',
+            q: keyword,
+            type: 'video',
+            videoEmbeddable: true
+        },
+        
+        function(data) {
+            $.each(data.items, function(i, item) {
+                $('#videi').append('<iframe width="420" height="315"\
+                                    src="http://www.youtube.com/embed/'+item.id.videoId+'">\
+                                    </iframe><br>');
+            });
+        })
+}
+
+function keywordGledeNaBMI(bmi) {
+    if (bmi < 18.5) {
+        return "mass gain";
+    }
+    if (bmi > 18.5 && bmi <= 24.9) {
+        return "funny cats";
+    }
+    if (bmi > 24.9 && bmi <= 29.9) {
+        return "healthy food";
+    }
+    else {
+        return "weight loss";
+    }
 }

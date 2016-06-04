@@ -10,6 +10,12 @@
       padding-top: 15px;
       padding-bottom: 15px;
     }
+    svg {
+      cursor: pointer;
+    }
+    #youtubeRow {
+      visibility: hidden;
+    }
     .liquidFillGaugeText { font-family: Helvetica; font-weight: bold; }
   </style>
   <script src="knjiznice/js/jquery-2.2.3.min.js"></script>
@@ -20,7 +26,6 @@
   
 </head>
 <body>
-
   <!-- ZAČETEK: Menujska vrstica na vrhu spletne strani -->
   <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
@@ -41,6 +46,7 @@
         </ul>
       </div>
     </div>
+    
   </nav>
   <!-- KONEC: Menujska vrstica na vrhu spletne strani -->
 
@@ -49,6 +55,7 @@
     
 		<div class="row">
       <div class="col-md-12 col-lg-12 col-sm-12">
+        <div id="kreiraniNoviZapisPred"></div>
         <div class="panel panel-default text-center" id="kreiraniNoviZapis">
           <p class="text-muted">Tukaj se pojavijo zgenerirani EHRId-ji, ki nastanejo ob kliku na "Generiranje podatkov".</p>
         </div>
@@ -84,10 +91,11 @@
                 </p>
               </div>
               <div class="panel-body">
-                <p class="lead">Lahko izberete tudi enega izmed zgeneriranih EHRID-jev.</p>
+                <p class="lead">Lahko izberete enega izmed zgeneriranih EHRID-jev ...</p>
                 
                 <select class="form-control input-sm" id="ehrDropdown"><option value="----"></option><option value="1" id="prviIdDropdown">1</option><option value="2" id="drugiIdDropdown">2</option><option value="3" id="tretjiIdDropdown">3</option></select>
-                
+                <br>
+                <p class="lead">ali pa ga ročno vpišete.</p>
                 <input id="ehrIdZaIzracun" type="text" class="form-control" placeholder="npr. 460438f3-67ec-4a47-84d8-8f16370e4cbc"></input><br>
     						<button type="button" class="btn btn-success btn-xs" onclick="zacniPoizvedboZaRezultate()">Poglej rezultate</button><span id="dodajMeritveVitalnihZnakovSporocilo"></span>
               </div>
@@ -104,14 +112,21 @@
                   <!-- naslov tukaj -->
                   <!-- graf tukaj -->
                 </div>
-                
-                <div id="apiKlicRezultat">
-                  <!-- videi tukaj -->
-                </div>
 
               </div>
             </div>
           </div>
+         </div>
+         <div class="row" id="youtubeRow">
+           <div class="col-md-12 col-lg-12 col-sm-12">
+              <div class="panel panel-default">
+                  <div class="panel-heading text-center">
+                    <p><b>Predlog YouTube videev</b></p>
+                  </div>
+                  <div class="panel-body" id="videi">
+                  </div>
+              </div>
+            </div>
          </div>
       </div>
     </div>
