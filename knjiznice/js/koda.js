@@ -21,8 +21,6 @@ function getSessionId() {
     return response.responseJSON.sessionId;
 }
 
-var stGeneriranj = 0;
-
 function generirajTriUporabnike() {
 
     $("#kreiraniNoviZapis").animate({ scrollTop: 0 }, "fast");
